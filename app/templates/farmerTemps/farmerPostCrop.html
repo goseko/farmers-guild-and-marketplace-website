@@ -1,0 +1,59 @@
+{%extends "./base.html"%}
+{% from "./_formhelpers.html" import render_field%}
+
+{%block body%}
+<title>Crop Sell</title>
+<body style=" background: linear-gradient(to bottom, #66ff66 0%, #66ffcc 100%);">
+
+ <div class="container">
+   <form method="POST" action="{{url_for('farmerPostCrop')}}" enctype="multipart/form-data" >
+       {{form.hidden_tag()}}
+       <div class="card-header">Crop Detail</div>
+       <div class="card-body">
+           <div class="form-group">
+               <lable>Crop Name</lable>
+               {{render_field(form.crop_name)}}
+           </div>
+
+
+           <div class="form-group">
+               <label> Crop Description</label>
+               {{render_field(form.crop_description)}}
+           </div>
+
+
+           <div class="form-group">
+             <label> Crop Quantity </label>
+             {{render_field(form.crop_quantity)}}
+             <small>The Quantity in KILOGRAMS</small>
+           </div>
+
+           <div class="form-group">
+               <label> crop price</label>
+               {{render_field(form.crop_price)}}
+           </div>
+
+           <div class="form-group">
+               <label> availability</label>
+               {{render_field(form.availability)}}
+           </div>
+
+
+
+           <div class="form-group">
+               <label>Upload the Crop Picture</label>
+               {{render_field(form.photo)}}
+           </div>
+           <button type="submit" class="btn btn-primary">Submit</button>
+       </div>
+   </form>
+
+</div>
+
+</body>
+
+
+
+
+
+{%endblock%}

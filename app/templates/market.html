@@ -1,0 +1,48 @@
+{%extends "base.html"%}
+{% from "_formhelpers.html" import render_field%}
+
+
+{%block body%}
+
+<body style=" background: linear-gradient(to bottom, #66ff66 0%, #66ffcc 100%);">
+
+
+<div class="container-fluid">
+    <div class="row">
+    {%for crop in crops%}
+    <div class="col-md-4">
+      <div class="card border-success">
+        <img src="{{url_for('static', filename=crop.crop_picLoc)}}" class="card-img-top" alt="..." height="250">
+        <div class="card-body" style=" background: linear-gradient(to bottom right, #ccffff 24%, #00cc66 98%);">
+          <h5 class="card-title"> {{crop.crop_name}}</h5>
+          <p class="card-text">Description:  {{crop.crop_description}}</p>
+          <p class="card-text">Quantity in Kilograms:  {{crop.crop_quantity}}</p>
+          <p class="card-text">Availability:  {{crop.availability}}</p>
+          <p class="card-text">Price per kilograms:  {{crop.crop_price}}</p>
+        </div>
+        <div class="card-footer bg-transparent border-success" style="background: linear-gradient(to top left, #00ff00 3%, #ccffcc 64%);">
+          <a href="{{url_for('view', crop_id = crop.crops_id, farmerId = crop.farmer_id)}}" class="btn btn-outline-primary">View</a>
+
+
+          <a href="{{url_for('view', crop_id = crop.crops_id, farmerId = crop.farmer_id)}}" class="btn btn-outline-primary">Purchase</a>
+
+
+        </div>
+      </div>
+      <br>
+    </div>
+    {%endfor%}
+
+  </div>
+</div>
+
+</body>
+
+
+
+
+
+
+
+
+{%endblock%}

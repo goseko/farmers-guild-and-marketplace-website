@@ -1,0 +1,55 @@
+{%extends "./base.html"%}
+
+
+{%block body%}
+<title>View Order</title>
+<body style=" background: linear-gradient(to bottom, #66ff66 0%, #66ffcc 100%);">
+
+
+<div class="container-fluid">
+<div class="row">
+  <div class="col-sm-6">
+  <div class="card border-success">
+    <img src="{{url_for('static', filename=crop.crop_picLoc)}}" class="card-img-top" alt="..." height="250">
+    <div class="card-body">
+      <h5 class="card-title"> {{crop.crop_name}}</h5>
+      <p class="card-text">Description:  {{crop.crop_description}}</p>
+      <p class="card-text">Quantity:  {{crop.crop_quantity}}</p>
+        <p class="card-text">Availability:  {{crop.availability}}</p>
+      <p class="card-text">Price :  {{crop.crop_price}}</p>
+    </div>
+    </div>
+  </div>
+
+
+
+      <div class="col-sm-4">
+
+      <h4>BUYER's Information</h4>
+      <br><br>
+      First Name: {{order.first_name}}
+      <br><br>
+      Last Name: {{order.last_name}}
+      <br><br>
+      Email: {{order.email}}
+      <br><br>
+      Phone Number: {{order.phone_number}}
+      <br><br>
+      Country: {{order.country}}
+      <br><br>
+      City: {{order.city}}
+      <br><br>
+      Address: {{order.address}}
+      <br><br>
+      Quantity Required: {{order.quantity}} kilogram
+      <br><br>
+      Date Order was made: {{order.date_posted.strftime("%b %d %Y %H:%M:%S")}}
+
+    </div>
+
+</div>
+</div>
+
+</body>
+
+{%endblock%}

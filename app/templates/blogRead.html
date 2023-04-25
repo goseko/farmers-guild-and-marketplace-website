@@ -1,0 +1,157 @@
+{%extends "base.html"%}
+{% from "./_formhelpers.html" import render_field%}
+
+
+{%block body%}
+<body style=" background: linear-gradient(to bottom, #66ff66 0%, #66ffcc 100%);">
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-8">
+
+      <div class="card mb-3">
+        <img src="{{url_for('static', filename= blog.pic_loc)}}" class="card-img-top" alt="..."  height="450">
+        <div class="card-body">
+          <h5 class="card-title">{{blog.title}}</h5>
+          <p class="card-text"><small class="text-muted">By:{{blog.author}}</small></p>
+          <p class="card-text">{{blog.sub_title}}</p>
+          <p class="card-text">{{blog.content}}</p>
+          <p class="card-text"><small class="text-muted">Date:{{blog.date_posted.strftime("%b %d %Y %H:%M:%S")}}</small></p>
+        </div>
+
+
+
+
+        <div class="card-footer bg-transparent border-success">
+
+
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+              Add a Comment
+          </button>
+
+          <br>
+            <br>
+          <div class="container">
+            <h3>Comments</h3>
+            <hr class="border-danger">
+
+            {%for comment in comments%}
+              <p class="card-text">Date:{{comment.date_posted.strftime("%b %d %Y %H:%M:%S")}} <br>Name:  {{comment.name}}
+          Wrote: {{comment.comment}}  </p>
+
+
+
+            {%endfor%}
+
+          </div>
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+    <div class="col-4">
+
+      <div class="card">
+
+        <div class="card-body">
+          <h5 class="card-title">INFORMATION ABOUT BLOGGER</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Name: {{farmer.username}}
+
+          </li>
+          <li class="list-group-item">Phone number: {{farmer.phone_number}}
+
+
+          </li>
+          <li class="list-group-item">Email: {{farmer.email}}
+
+
+          </li>
+        </ul>
+      </div>
+
+      <hr class="border-info">
+
+      <div class="card">
+
+        <div class="card-body">
+          <h5 class="card-title">More blogs from the Blogger</h5>
+        </div>
+        {%for blog in allBlogs%}
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Title: {{blog.title}}
+            <a href="{{url_for('readBlog', blog_id=blog.blog_id)}}" class="btn btn-outline-info">Read It</a>
+          </li>
+        </ul>
+        {%endfor%}
+          <hr class="border-info">
+      </div>
+
+    </div>
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="{{url_for('addComment', blog_id=blog.blog_id)}}">
+            {{form.hidden_tag()}}
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Name:</label><br>
+            {{render_field(form.name)}}
+
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Comment:</label><br>
+            {{render_field(form.comment)}}
+
+          </div>
+          <button type="submit" class="btn btn-primary" onClick="window.location.reload()">Submit</button>
+        </form>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</body>
+
+
+
+
+
+
+{%endblock%}

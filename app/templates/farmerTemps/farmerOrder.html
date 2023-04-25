@@ -1,0 +1,60 @@
+{%extends "./base.html"%}
+
+
+{%block body%}
+<title>order</title>
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md">
+        <h3>View Orders Made</h3>
+
+        <table class="table table-striped">
+          <thead>
+            <tr>
+
+              <th scope="col">first name</th>
+              <th scope="col">last name</th>
+              <th scope="col">email</th>
+              <th scope="col">phone_number</th>
+              <th scope="col">country</th>
+              <th scope="col">city</th>
+              <th scope="col">address</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Date Order made</th>
+              <th scope="col">Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%for order in orders%}
+            <tr>
+
+              <td>{{order.first_name}}</td>
+              <td>{{order.last_name}}</td>
+              <td>{{order.email}}</td>
+              <td>{{order.phone_number}}</td>
+              <td>{{order.country}}</td>
+              <td>{{order.city}}</td>
+              <td>{{order.address}}</td>
+              <td>{{order.quantity}}</td>
+              <td>{{order.date_posted.strftime("%b %d %Y %H:%M:%S")}}</td>
+
+              <td>
+                <a href="{{url_for('vieworders', crop_id = order.crop_id, orderId =order.id )}}"  class="btn btn-outline-info">View</a>
+
+              </td>
+            </tr>
+          {%endfor%}
+          </tbody>
+        </table>
+
+
+      </div>
+
+</div>
+
+
+
+
+
+{%endblock%}

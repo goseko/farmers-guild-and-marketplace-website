@@ -1,0 +1,38 @@
+{%extends "base.html"%}
+{% from "_formhelpers.html" import render_field%}
+
+{%block body%}
+<title>Sign In</title>
+
+
+
+<div class="card bg-dark text-white">
+  <img src="{{url_for('static', filename='images/f7.jpg')}}" class="card-img" alt="...">
+
+    <div class="card-img-overlay border-light text-center" style="align: center;">
+        <form method="POST" action="{{url_for('farmerSignIn')}}">
+            {{form.hidden_tag()}}
+            <div class="card-header">LOGIN</div>
+            <div class="card-body">
+                 <div class="form-group">
+                     <lable>Enter your User Name</lable>
+                     {{render_field(form.username)}}
+                 </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <lable>Enter your password</lable>
+
+                  {{render_field(form.password)}}
+
+            </div>
+             <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+  </div>
+
+
+{%endblock%}

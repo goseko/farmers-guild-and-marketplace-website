@@ -1,0 +1,45 @@
+{%extends "base.html"%}
+
+{%block body%}
+<body style=" background: linear-gradient(to bottom, #66ff66 0%, #66ffcc 100%);">
+
+<br>
+
+
+ <div class="container">
+      <div class="card-header text-center">EDIT BLOG</div>
+
+        <form method="POST" action="{{url_for('edit_blog', Blogid= blog.blog_id)}}">
+
+            <div class="card-body">
+               <div class="form-group">
+                  <label for="validationDefault01">Blog title </label>
+                  <input type="text" class="form-control" id="validationDefault01" name="title" value="{{blog.title}}" required>
+              </div>
+              <div class="form-group">
+                 <label for="validationDefault02">Blog Sub title</label>
+                 <input type="text" class="form-control" id="validationDefault02" name="sub_title" value="{{blog.sub_title}}" required>
+             </div>
+             <div class="form-group">
+                <label for="exampleFormControlTextarea1">content</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="7"  name="content">{{blog.content}}</textarea>
+
+            </div>
+            </div>
+             <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <br>
+
+<br>
+
+
+
+</body>
+
+
+
+
+
+
+
+{%endblock%}

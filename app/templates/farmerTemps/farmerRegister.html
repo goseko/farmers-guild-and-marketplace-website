@@ -1,0 +1,51 @@
+{%extends "./base.html"%}
+{% from "./_formhelpers.html" import render_field%}
+
+<title>Register</title>
+
+{%block body%}
+
+
+<div class="card bg-dark text-white">
+  <img src="{{url_for('static', filename='images/f8.jpg')}}"  alt="..." style="opacity:0.8;">
+
+    <div class="card-img-overlay text-center" style="align: center;">
+        <form method="POST" action="{{url_for('farmerRegister')}}" >
+            {{form.hidden_tag()}}
+            <div class="card-header">REGISTER</div>
+            <div class="card-body">
+                <div class="form-group">
+                    <lable>Enter a User Name</lable>
+                    {{render_field(form.username)}}
+                </div>
+
+
+                <div class="form-group">
+                    <label> Enter your Phone Number</label>
+                    {{render_field(form.phone_number)}}
+                </div>
+
+
+                <div class="form-group">
+                  <label> Enter your email</label>
+                  {{render_field(form.email)}}
+                </div>
+
+                <div class="form-group">
+                    <label> Enter your Password</label>
+                    {{render_field(form.password)}}
+                </div>
+
+                <div class="form-group">
+                    <label>Confirm your password</label>
+                    {{render_field(form.confirm_pass)}}
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+{%endblock%}

@@ -1,0 +1,124 @@
+{%extends "base.html"%}
+
+{%block body%}
+<title>blogSite</title>
+
+
+<body style=" background: linear-gradient(to bottom, #66ff66 0%, #66ffcc 100%);">
+
+
+
+
+
+  {%if current_user.is_authenticated %}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md">
+        <h1>Read others Blogs</h1>
+
+
+        {%for blog in blogs%}
+          <div class="card w-100 border-success" style=" background: linear-gradient(to top left, #ccffff 24%, #00cc66 98%);">
+
+            <div class="row no-gutters">
+
+              <div class="col-md-4">
+                <img src="{{url_for('static', filename=blog.pic_loc)}}" alt="..." class="img-thumbnail">
+              </div>
+
+              <div class="col-md-6">
+                <div class="card-body">
+
+                  <h5 class="card-title">{{blog.title}}</h5>
+                  <p class="card-text">{{blog.sub_title}}.</p>
+                  <p class="card-text">Posted by: {{blog.author}}</p>
+                  <p class="card-text"><small class="alert alert-info">Date:{{blog.date_posted.strftime("%b %d %Y %H:%M:%S")}} </small></p>
+                  <div class="card-footer bg-transparent border-success">
+                      <a href="{{url_for('readBlog', blog_id=blog.blog_id)}}" class="btn btn-primary">Read IT</a>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+          <br>
+        {%endfor%}
+
+      </div>
+
+
+
+
+
+       <div class="col-md">
+        <h1>See Your Blogs <a href="{{url_for('createBlog', farmer_id=current_user.id)}}" class="btn btn-secondary">New Blog</a></h1>
+        {%for blog in personal_blogs%}
+        <div class="card w-100 border-success"style=" background: linear-gradient(to top left, #ccffff 24%, #00cc66 98%);">
+           <div class="row no-gutters">
+             <div class="col-md-4">
+               <img src="{{url_for('static', filename=blog.pic_loc)}}" alt="..." class="img-thumbnail">
+             </div>
+             <div class="col-md-6">
+               <div class="card-body">
+                 <h5 class="card-title">{{blog.title}}</h5>
+                 <p class="card-text">{{blog.content}}.</p>
+                 <p class="card-text">Posted by: {{blog.author}}</p>
+                 <p class="card-text"><small class="alert alert-info">Date: {{blog.date_posted.strftime("%b %d %Y %H:%M:%S")}} </small></p>
+                 <div class="card-footer bg-transparent border-success">
+                     <a href="{{url_for('readBlog', blog_id=blog.blog_id)}}" class="btn btn-primary">Read IT</a>
+                      <a href="{{url_for('edit_blog', Blogid= blog.blog_id)}}" class="btn btn-primary">Edit IT</a>
+               </div>
+             </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        {%endfor%}
+      </div>
+     </div>
+    </div>
+  {%endif%}
+
+
+  {%if not current_user.is_authenticated %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col">
+
+      <h1>Read Blogs</h1>
+
+      {%for blog in blogs%}
+        <div class="card w-75 border-success" style=" background: linear-gradient(to top left, #ccffff 24%, #00cc66 98%);">
+
+          <div class="row no-gutters">
+
+            <div class="col-md-4">
+              <img src="{{url_for('static', filename=blog.pic_loc)}}" alt="..." class="img-thumbnail">
+            </div>
+
+            <div class="col-md-6">
+              <div class="card-body">
+                <h5 class="card-title">{{blog.title}}</h5>
+                <p class="card-text">{{blog.content}}.</p>
+                <p class="card-text">Posted by: {{blog.author}}</p>
+                <p class="card-text"><small class="alert alert-info">Date: {{blog.date_posted.strftime("%b %d %Y %H:%M:%S")}} </small></p>
+                <div class="card-footer bg-transparent border-success">
+                    <a href="{{url_for('readBlog', blog_id=blog.blog_id)}}" class="btn btn-primary">Read IT</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+      {%endfor%}
+
+    </div>
+  </div>
+</div>
+
+</body>
+  {%endif%}
+
+
+
+{%endblock%}

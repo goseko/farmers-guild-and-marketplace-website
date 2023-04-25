@@ -1,0 +1,50 @@
+{%extends "./base.html"%}
+{% from "./_formhelpers.html" import render_field%}
+
+{%block body%}
+<title>Blog Create</title>
+<body style=" background: linear-gradient(to bottom, #66ff66 0%, #66ffcc 100%);">
+
+ <div class="container">
+   <form method="POST" action="{{url_for('createBlog', farmer_id=current_user.id)}}" enctype="multipart/form-data" >
+       {{form.hidden_tag()}}
+       <div class="card-header">Creat A Blog</div>
+       <div class="card-body">
+
+         <div class="form-group">
+           <label>Blog Picture</label>
+           {{render_field(form.photo)}}
+         </div>
+
+           <div class="form-group">
+               <lable>Title </lable>
+               {{render_field(form.title)}}
+           </div>
+
+
+           <div class="form-group">
+               <label> Sub Title</label>
+               {{render_field(form.sub_title)}}
+           </div>
+
+           <div class="form-group">
+               <label> BLOG CONTENT</label>
+               {{render_field(form.content, id='editor')}}
+           </div>
+           <button type="submit" class="btn btn-primary">Submit</button>
+       </div>
+   </form>
+
+</div>
+
+<script src="/static/js/ckeditor/ckeditor.js"></script>
+<script>
+	CKEDITOR.replace('editor')
+</script>
+
+</body>
+
+
+
+
+{%endblock%}

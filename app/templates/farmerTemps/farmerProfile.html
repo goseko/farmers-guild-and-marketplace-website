@@ -1,0 +1,196 @@
+{%extends "base.html"%}
+
+
+
+{%block body%}
+<body style=" background: linear-gradient(to bottom, #66ff66 0%, #66ffcc 100%);">
+
+<div class="container">
+
+
+
+    {%for farmer in allFarmers%}
+
+      {%if farmer.id == current_user.id%}
+      <div class="card">
+
+        <div class="card-body">
+          <h5 class="card-title">Your Details</h5>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Name: {{farmer.username}}
+
+          </li>
+          <li class="list-group-item">Phone number: {{farmer.phone_number}}
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" style="float:right;">
+                Edit
+            </button>
+
+          </li>
+          <li class="list-group-item">Email: {{farmer.email}}
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2" style="float:right;">
+                Edit
+            </button>
+
+          </li>
+        </ul>
+
+      </div>
+      {%endif%}
+
+  <br>
+  <br>
+
+
+    {%if farmer.id != current_user.id%}
+    <div class="card">
+
+      <div class="card-body">
+        <h5 class="card-title">See other Farmers Details</h5>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Name: {{farmer.username}}
+
+        </li>
+        <li class="list-group-item">Phone number: {{farmer.phone_number}}
+
+
+        </li>
+        <li class="list-group-item">Email: {{farmer.email}}
+
+
+        </li>
+      </ul>
+    </div>
+      {%endif%}
+    {%endfor%}
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change your Email title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form method="POST" action="{{url_for('EditNUm', id=farmer.id)}}">
+
+          <div class="form-group">
+            <label for="validationCustom01">Changer Phone number</label>
+            <input type="text" class="form-control" id="validationCustom01" name="phone" value="{{farmer.phone_number}}" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Change your Email title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+
+        <form method="POST" action="{{url_for('editEmail', id=farmer.id)}}">
+
+          <div class="form-group">
+            <label for="validationCustom01">Email</label>
+            <input type="text" class="form-control" id="validationCustom01" name="email" value="{{farmer.email}}" required>
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-danger" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+
+
+
+
+
+{%endblock%}
